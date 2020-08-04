@@ -1,0 +1,8 @@
+{
+  "app": "python3 app.py",
+  "context": {
+    "@aws-cdk/core:enableStackNameDuplicates": "true",
+    "aws-cdk:enableDiffNoFail": "true",
+    "gitlab-token": "12345"
+  }
+}

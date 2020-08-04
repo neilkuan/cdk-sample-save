@@ -1,0 +1,6 @@
+import urllib.request
+
+external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
+
+aaa = print(external_ip + "/32")
+print (type(str(aaa)))
