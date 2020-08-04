@@ -34,7 +34,7 @@ class EcsAlbStack(core.Stack):
         
         # create s3 bucketss
         BlockPOptions = s3.BlockPublicAccess(ignore_public_acls=True, restrict_public_buckets=True)
-        news3 = s3.Bucket(self, "s3bucket", bucket_name='zxcvbsdfghwerty2020',removal_policy=core.RemovalPolicy.DESTROY,
+        news3 = s3.Bucket(self, "s3bucket", bucket_name=core.PhysicalName.GENERATE_IF_NEEDED,removal_policy=core.RemovalPolicy.DESTROY,
         encryption=s3.BucketEncryption.KMS_MANAGED,block_public_access=BlockPOptions )
         
         # removal_policy=core.RemovalPolicy.DESTROY 此指令是為了下cdk destroy 可以刪除現有名稱的資源

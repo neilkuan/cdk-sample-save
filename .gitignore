@@ -1,0 +1,26 @@
+*.swp
+package-lock.json
+__pycache__
+.pytest_cache
+.env
+*.egg-info
+*cdk.context.json
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+eks-dockerbuilder-non-entrypoint/
+.vscode
+vpc/config.toml
+.DS_Store
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Parcel default cache directory
+.parcel-cache
+cdk.context.json
