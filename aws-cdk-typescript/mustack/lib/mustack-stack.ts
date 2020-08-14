@@ -42,7 +42,7 @@ export class MustackStack extends cdk.Stack {
     'usermod -aG docker ssm-user',
     'chmod +x /var/run/docker.sock',
     'systemctl restart docker && systemctl enable docker',
-    'mksir /home/ec2-user/jenkins-data',
+    'mkdir /home/ec2-user/jenkins-data',
     'docker run -d -u root -p 8080:8080 -p 50000:50000 -v /home/ec2-user/jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /home/ec2-user:/home jenkinsci/blueocean'
     );
 

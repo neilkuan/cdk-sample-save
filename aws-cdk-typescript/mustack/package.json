@@ -21,6 +21,7 @@
     "typescript": "~3.7.2"
   },
   "dependencies": {
+    "@aws-cdk/aws-autoscaling": "^1.58.0",
     "@aws-cdk/aws-ec2": "^1.58.0",
     "@aws-cdk/aws-iam": "^1.58.0",
     "@aws-cdk/core": "1.58.0",
