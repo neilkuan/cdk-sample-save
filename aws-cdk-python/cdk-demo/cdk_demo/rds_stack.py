@@ -67,6 +67,9 @@ class RdsStack(core.Stack):
         #        "subnet_type": ec2.SubnetType.PUBLIC
         #    }
         #)
+        #external_ip = requests.get('https://checkip.amazonaws.com').text.rstrip()
+        #your_public_ip = str(external_ip + "/32")
+        #demords.connections.allow_default_port_from(other=ec2.Peer.ipv4(your_public_ip))
 
         demords.connections.allow_default_port_from(other=ec2.Peer.ipv4(
             vpc.vpc_cidr_block))
