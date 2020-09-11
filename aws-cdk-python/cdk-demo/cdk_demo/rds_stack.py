@@ -36,6 +36,37 @@ class RdsStack(core.Stack):
             removal_policy=core.RemovalPolicy.DESTROY,
             deletion_protection=False,
         )
+        
+        # The code that is version for 1.62.0 .
+        #vpc = ec2.Vpc(self, 'rdsvpc',
+        #cidr="10.0.0.0/16",
+        #enable_dns_hostnames=True,
+        #enable_dns_support=True,
+        #nat_gateways=0,
+        #subnet_configuration=[ec2.SubnetConfiguration(
+        #    cidr_mask=20,
+        #    name='PublicSubnet',
+        #    subnet_type=ec2.SubnetType.PUBLIC,
+        #    )])
+        #rdspg = rds.ParameterGroup(self, 'dbpg',engine=rds.DatabaseInstanceEngine.mysql(version=rds.MysqlEngineVersion.VER_8_0_16))
+        #demords = rds.DatabaseInstance(
+        #    self, "RDS",
+        #    master_username="admin",
+        #    master_user_password=core.SecretValue.plain_text(rdspwd),
+        #    database_name="db1",
+        #    delete_automated_backups=True,
+        #    parameter_group=rdspg,
+        #    # instance_identifier="cdkdemords2",
+        #    vpc=vpc,
+        #    engine=rds.DatabaseInstanceEngine.mysql(version=rds.MysqlEngineVersion.VER_8_0_16),
+        #    port=3306,
+        #    instance_type=ec2.InstanceType("t3.small"),
+        #    removal_policy=core.RemovalPolicy.DESTROY,
+        #    deletion_protection=False,
+        #    vpc_subnets={
+        #        "subnet_type": ec2.SubnetType.PUBLIC
+        #    }
+        #)
 
         demords.connections.allow_default_port_from(other=ec2.Peer.ipv4(
             vpc.vpc_cidr_block))
