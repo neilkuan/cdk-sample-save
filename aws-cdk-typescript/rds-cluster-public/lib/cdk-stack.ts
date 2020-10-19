@@ -28,8 +28,8 @@ export class CdkStack extends cdk.Stack {
         version: rds.AuroraMysqlEngineVersion.VER_2_07_1,
       }),
       parameterGroup: dbclusterpg,
-      masterUser: {
-        password: new cdk.SecretValue(randomstring),
+      credentials: {
+        password: cdk.SecretValue.plainText(randomstring),
         username: 'admin',
       },
       instances: 1,
