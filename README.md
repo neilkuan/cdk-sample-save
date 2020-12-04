@@ -52,5 +52,8 @@ ec2.MachineImage.lookup({
 ec2.MachineImage.lookup({
         name: '*ubuntu-bionic-18.04-amd64-*',
         owners: ['099720109477'],
+        filters: {
+          ['root-device-type']: ['ebs'],
+        },
       }).getImage(this).imageId
 ```
