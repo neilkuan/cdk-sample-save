@@ -36,3 +36,21 @@ export class FargetMultipleStackStack extends cdk.Stack {
 }
 
 ```
+
+### Find Centos ami
+```typescript
+ec2.MachineImage.lookup({
+        filters: {
+          ['product-code']: ['aw0evgkw8e5c1q413zgy5pjce'],
+        },
+        name: '*CentOS*',
+        owners: ['aws-marketplace'],
+      }).getImage(this).imageId
+```
+### Find Ubuntu ami
+```typescript
+ec2.MachineImage.lookup({
+        name: '*ubuntu-bionic-18.04-amd64-*',
+        owners: ['099720109477'],
+      }).getImage(this).imageId
+```
