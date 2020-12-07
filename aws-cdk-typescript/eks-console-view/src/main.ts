@@ -21,16 +21,7 @@ export class MyStack extends Stack {
     masterRole.addToPolicy(
       new iam.PolicyStatement({
         actions: [
-          'eks:ListFargateProfiles',
-          'eks:DescribeNodegroup',
-          'eks:ListNodegroups',
-          'eks:DescribeFargateProfile',
-          'eks:ListTagsForResource',
-          'eks:ListUpdates',
-          'eks:DescribeUpdate',
-          'eks:DescribeCluster',
-          'eks:ListClusters',
-          'eks:AccessKubernetesApi',
+          'eks:*',
           'ssm:GetParameter',
         ],
         resources: ['*'],
