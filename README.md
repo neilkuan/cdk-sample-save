@@ -50,6 +50,7 @@ ec2.MachineImage.lookup({
 ### Find Ubuntu ami
 ```typescript
 ec2.MachineImage.lookup({
+       //name: '*ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*',
         name: '*ubuntu-bionic-18.04-amd64-*',
         owners: ['099720109477'],
         filters: {
