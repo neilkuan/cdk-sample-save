@@ -41,12 +41,6 @@ jspm_packages/
 cdk.out/
 .cdk.staging/
 .parcel-cache/
-cdk.out
-cdk.context.json
-yarn-error.log
-coverage
-.DS_Store
-.env
 !/package.json
 !/.npmignore
 !/LICENSE

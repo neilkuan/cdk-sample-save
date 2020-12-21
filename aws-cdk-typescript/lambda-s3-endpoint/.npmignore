@@ -16,12 +16,6 @@ dist
 /.eslintrc.json
 cdk.out/
 .cdk.staging/
-cdk.out
-cdk.context.json
-yarn-error.log
-coverage
-.DS_Store
-.env
 !/lib
 !/lib/**/*.js
 !/lib/**/*.d.ts

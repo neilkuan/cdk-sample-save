@@ -50,7 +50,7 @@ export class Demo extends cdk.Construct {
     //  },
     //});
 
-    tests3.grantReadWrite(testlambda);
+    testlambda.role?.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonS3ReadOnlyAccess'));
     const s3Endpoint =vpc.addGatewayEndpoint('s3Endpoint', {
       service: ec2.GatewayVpcEndpointAwsService.S3,
     });
