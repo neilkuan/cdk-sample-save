@@ -4,7 +4,7 @@ import * as iam from '@aws-cdk/aws-iam';
 import * as _lambda from '@aws-cdk/aws-lambda';
 import * as s3deploy from '@aws-cdk/aws-s3-deployment';
 import * as cdk from '@aws-cdk/core';
-import * as s3 from 'cdk-s3bucket-ng';
+import * as s3 from '@aws-cdk/aws-s3';
 
 
 export class Demo extends cdk.Construct {
@@ -16,7 +16,7 @@ export class Demo extends cdk.Construct {
       natGateways: 1,
     });
 
-    const tests3 = new s3.BucketNg(this, 'testS3', {
+    const tests3 = new s3.Bucket(this, 'testS3', {
       bucketName: 'neiltests3',
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
