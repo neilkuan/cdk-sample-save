@@ -1,9 +1,9 @@
 
 image: public.ecr.aws/pahudnet/gitpod-workspace:latest
 
-tasks:
-  - name: run docker
-    command: sudo docker-up
+#tasks:
+#  - name: run docker
+#    command: sudo docker-up
    
 vscode:
   extensions:
