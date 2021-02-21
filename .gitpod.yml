@@ -1,16 +1,10 @@
-github:
-  prebuilds:
-    pullRequestsFromForks: true
-    addComment: true
-    
+
 image: public.ecr.aws/pahudnet/gitpod-workspace:latest
 
 tasks:
-  - name: docker_up
+  - name: run docker
     command: sudo docker-up
-  - name: bash-completion
-    command: echo "source /usr/share/bash-completion/completions/git" >> $HOME/.bashrc
-    
+   
 vscode:
   extensions:
     - dbaeumer.vscode-eslint@2.1.5:9Wg0Glx/TwD8ElFBg+FKcQ==
