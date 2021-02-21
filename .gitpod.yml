@@ -8,13 +8,9 @@ image: public.ecr.aws/pahudnet/gitpod-workspace:latest
 tasks:
   - name: docker_up
     command: sudo docker-up
-  - name: display_sudo_permissions
-    openMode: split-right
-    command: docker run -it --rm drud/ddev-webserver:v1.16.3 ls -l /usr/bin/sudo
   - name: bash-completion
     command: echo "source /usr/share/bash-completion/completions/git" >> $HOME/.bashrc
     
 vscode:
   extensions:
     - dbaeumer.vscode-eslint@2.1.5:9Wg0Glx/TwD8ElFBg+FKcQ==
-    - 
