@@ -4,9 +4,7 @@ github:
     addComment: true
     
 image: public.ecr.aws/pahudnet/gitpod-workspace:latest
-tasks:
-  - command: echo "source /usr/share/bash-completion/completions/git" >> $HOME/.bashrc
-  - command: sudo docker-up
+
 tasks:
   - name: docker_up
     command: sudo docker-up
@@ -19,3 +17,4 @@ tasks:
 vscode:
   extensions:
     - dbaeumer.vscode-eslint@2.1.5:9Wg0Glx/TwD8ElFBg+FKcQ==
+    - 
