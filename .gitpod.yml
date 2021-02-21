@@ -3,7 +3,7 @@ image: public.ecr.aws/w4j7f3u2/gitpod-awscdk:v1
 
 tasks:
   - name: run docker
-    command: sudo docker-up
+    command: sudo docker-up & 
    
 vscode:
   extensions:
