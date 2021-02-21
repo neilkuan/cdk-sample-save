@@ -11,7 +11,7 @@ tasks:
   - name: display_sudo_permissions
     openMode: split-right
     command: docker run -it --rm drud/ddev-webserver:v1.16.3 ls -l /usr/bin/sudo
-  - name: echo git bash-completion
+  - name: bash-completion
     command: echo "source /usr/share/bash-completion/completions/git" >> $HOME/.bashrc
     
 vscode:
