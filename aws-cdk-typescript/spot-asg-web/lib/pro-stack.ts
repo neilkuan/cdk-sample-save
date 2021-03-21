@@ -5,7 +5,7 @@ import * as elb from '@aws-cdk/aws-elasticloadbalancingv2';
 import * as iam from '@aws-cdk/aws-iam';
 import * as r53 from '@aws-cdk/aws-route53';
 import * as r53tg from '@aws-cdk/aws-route53-targets';
-import { Construct, Stack, StackProps, CfnOutput, Duration } from '@aws-cdk/core';
+import { Construct, Stack, StackProps, CfnOutput, Duration, Fn } from '@aws-cdk/core';
 
 interface DemoStackProps extends StackProps {
   zoneId?: string;
@@ -29,17 +29,20 @@ systemctl status amazon-ssm-agent
 systemctl enable amazon-ssm-agent
 systemctl restart amazon-ssm-agent
 exit 0`);
-    // define resources here...
+    // new vpc for this demo.
     const vpc = new ec2.Vpc(this, 'newVpc', {
       maxAzs: 2,
       natGateways: 1,
     });
+    // find exist acm from my account.
     const acm = certmgr.Certificate.fromCertificateArn(this, 'demoAcm', props?.acm ?? `${this.node.tryGetContext('acm')}`);
+    // create a new alb for this asg.
     const alb = new elb.ApplicationLoadBalancer(this, 'myalb', {
       vpc,
       internetFacing: true,
       loadBalancerName: 'demoalb',
-    } );
+    });
+    // use lanuch template for replace asg lanuch configure.
     const asg = new asing.AutoScalingGroup(this, 'webASG', {
       vpc,
       instanceType: new ec2.InstanceType('t3.micro'),
@@ -55,6 +58,50 @@ exit 0`);
       ],
       userData,
     });
+    // create instance profile for lanuch template.
+    const instanceProfile = new iam.CfnInstanceProfile(this, 'InstanceProfile', {
+      roles: [asg.role.roleName],
+    });
+    // use lanuch template for replace asg lanuch configure.
+    const lt = new ec2.CfnLaunchTemplate(this, 'GitlabRunnerLaunchTemplate', {
+      launchTemplateData: {
+        imageId: ec2.MachineImage.latestAmazonLinux({
+          generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
+        }).getImage(this).imageId,
+        instanceType: 't3.medium',
+        instanceMarketOptions: {
+          marketType: 'spot',
+          spotOptions: {
+            spotInstanceType: 'one-time',
+          },
+        },
+        userData: Fn.base64(userData.render()),
+        blockDeviceMappings: [
+          {
+            deviceName: '/dev/xvda',
+            ebs: {
+              volumeSize: 30,
+            },
+          },
+        ],
+        iamInstanceProfile: {
+          arn: instanceProfile.attrArn,
+        },
+        securityGroupIds: asg.connections.securityGroups.map(
+          (m) => m.securityGroupId,
+        ),
+      },
+    });
+    // find L1 Cfn asg construct resource in ASG use lanuch template replace it. 
+    const cfnAsg = asg.node.tryFindChild('ASG') as asing.CfnAutoScalingGroup;
+    cfnAsg.addPropertyDeletionOverride('LaunchConfigurationName');
+    cfnAsg.addPropertyOverride('LaunchTemplate', {
+      LaunchTemplateId: lt.ref,
+      Version: lt.attrLatestVersionNumber,
+    });
+    // remove LaunchConfig from asg.
+    asg.node.tryRemoveChild('LaunchConfig');
+    // add some policy to asg iam role
     asg.addToRolePolicy(
       new iam.PolicyStatement({
         actions: [
@@ -64,7 +111,9 @@ exit 0`);
         ],
         resources: ['*'],
       }));
-    asg.connections.allowFrom( ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(80));
+    // add inbound from alb SG to asg SG.
+    asg.connections.allowFrom( alb.connections, ec2.Port.tcp(80));
+    // add listener and redirect action for asg .
     alb.addListener('myWebhttp', {
       port: 80,
       open: true,
@@ -85,6 +134,7 @@ exit 0`);
       port: 80,
       targets: [asg],
     });
+    // find r53 zone.
     const zone = r53.HostedZone.fromHostedZoneAttributes(this, 'myZone', {
       hostedZoneId: props?.zoneId ?? this.node.tryGetContext('zoneId'),
       zoneName: props?.zoneName ?? this.node.tryGetContext('zoneName'),
