@@ -24,6 +24,7 @@
     "@aws-cdk/aws-ec2": "^1.82.0",
     "@aws-cdk/aws-rds": "^1.82.0",
     "@aws-cdk/core": "1.82.0",
+    "netmask": "^2.0.1",
     "node-notifier": "8.0.1",
     "source-map-support": "^0.5.16"
   }
