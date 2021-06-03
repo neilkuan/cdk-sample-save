@@ -37,16 +37,22 @@ export class FargetMultipleStackStack extends cdk.Stack {
 
 ```
 
-### Find Centos ami
+### Find Centos 7 ami
 ```typescript
 ec2.MachineImage.lookup({
-        filters: {
-          ['product-code']: ['aw0evgkw8e5c1q413zgy5pjce'],
-        },
-        name: '*CentOS*',
-        owners: ['aws-marketplace'],
-      }).getImage(this).imageId
+      name: '*CentOS-7*',
+      owners: ['679593333241'],
+    });.getImage(this).imageId;
 ```
+### Find Centos 8 ami
+```typescript
+ec2.MachineImage.lookup({
+      name: '*CentOS-8*',
+      owners: ['679593333241'],
+    });.getImage(this).imageId;
+```
+
+
 ### Find Ubuntu ami
 ```typescript
 ec2.MachineImage.lookup({
