@@ -52,10 +52,6 @@
       "type": "build"
     },
     {
-      "name": "netmask",
-      "type": "build"
-    },
-    {
       "name": "projen",
       "version": "^0.17.18",
       "type": "build"
