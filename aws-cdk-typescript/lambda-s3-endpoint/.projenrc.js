@@ -17,6 +17,8 @@ project.package.addField('resolutions', {
     'hosted-git-info': '2.8.9',
     lodash: '4.17.21',
     netmask: '2.0.1',
-    'trim-newlines': '3.0.1'
+    'trim-newlines': '3.0.1',
+    y18n: '4.0.1',
+    browserslist: '4.16.5'
 })
 project.synth();
