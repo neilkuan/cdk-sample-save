@@ -13,7 +13,6 @@ eks-dockerbuilder-non-entrypoint/
 .vscode
 vpc/config.toml
 .DS_Store
-*.js
 !jest.config.js
 *.d.ts
 node_modules
