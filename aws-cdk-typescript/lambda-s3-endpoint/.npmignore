@@ -6,7 +6,6 @@
 /.mergify.yml
 /.projen
 /.projenrc.js
-/.versionrc.json
 /.vscode
 /coverage
 /src
@@ -18,6 +17,7 @@
 cdk.out/
 dist
 junit.xml
+tsconfig.tsbuildinfo
 !/lib
 !/lib/**/*.d.ts
 !/lib/**/*.js
