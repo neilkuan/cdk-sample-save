@@ -53,5 +53,5 @@ git push origin dev
 
 ### To Destroy
 ```bash
-yarn
+cdk destroy
 ```
