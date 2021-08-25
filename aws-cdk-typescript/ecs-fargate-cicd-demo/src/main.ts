@@ -138,7 +138,7 @@ export class DemoStack extends cdk.Stack {
               'export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output=text)',
               'export ECR_REPO_URI="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME"',
               'echo "New Version is $ECR_REPO_URI:$TAG ..."',
-              'export CHECK=$(aws ecr list-images --repository-name $ECR_REPO_NAME --query [\'imageIds\'] --filter tagStatus="TAGGED" --output text | grep $TAG | wc -l)',
+              'export CHECK=$(aws ecr list-images --repository-name $ECR_REPO_NAME --query \"imageIds[?imageTag==\\`$TAG\\`].imageTag\" --filter tagStatus="TAGGED" --output text | grep $TAG | wc -l)',
               'if [ $CHECK == 1 ];then echo "okay! This version is existed"; else echo "This image version not found" && exit 1; fi',
               'printf \'[{\"name\":\"%s\",\"imageUri\":\"%s\"}]\' $CONTAINER_NAME $ECR_REPO_URI:$TAG > imagedefinitions.json',
               'pwd; ls -al; cat imagedefinitions.json',
