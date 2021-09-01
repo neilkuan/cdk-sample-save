@@ -1,7 +1,7 @@
 const { AwsCdkTypeScriptApp } = require('projen');
 
 const project = new AwsCdkTypeScriptApp({
-  cdkVersion: "1.116.0",
+  cdkVersion: "1.120.0",
   name: "lambda-s3-endpoint",
   cdkDependencies: [
     '@aws-cdk/aws-ec2',
@@ -19,6 +19,7 @@ project.package.addField('resolutions', {
     netmask: '2.0.1',
     'trim-newlines': '3.0.1',
     y18n: '4.0.1',
-    browserslist: '4.16.5'
+    browserslist: '4.16.5',
+    tar: '6.1.9',
 })
 project.synth();
