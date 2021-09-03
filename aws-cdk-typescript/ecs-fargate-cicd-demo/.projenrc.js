@@ -1,6 +1,6 @@
 const { AwsCdkTypeScriptApp } = require('projen');
 const project = new AwsCdkTypeScriptApp({
-  cdkVersion: '1.119.0',
+  cdkVersion: '1.121.0',
   defaultReleaseBranch: 'main',
   name: 'ecs-fargate-cicd-demo',
   cdkDependencies: [
@@ -20,5 +20,9 @@ const project = new AwsCdkTypeScriptApp({
   deps: [
     'cdk-ecr-deployment',
   ],
+});
+
+project.package.addField('resolutions', {
+    'pac-resolver': '^5.0.0',
 });
 project.synth();

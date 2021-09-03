@@ -20,6 +20,7 @@ project.package.addField('resolutions', {
     'trim-newlines': '3.0.1',
     y18n: '4.0.1',
     browserslist: '4.16.5',
+    'pac-resolver': '^5.0.0',
     tar: '6.1.9',
-})
+});
 project.synth();
