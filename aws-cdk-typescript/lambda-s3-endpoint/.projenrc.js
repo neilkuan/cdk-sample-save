@@ -23,5 +23,6 @@ project.package.addField('resolutions', {
   'pac-resolver': '^5.0.0',
   'tar': '6.1.9',
   'tmpl': '^1.0.5',
+  'ansi-regex': '^6.0.1',
 });
 project.synth();
