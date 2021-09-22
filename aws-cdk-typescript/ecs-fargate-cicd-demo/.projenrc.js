@@ -23,6 +23,8 @@ const project = new AwsCdkTypeScriptApp({
 });
 
 project.package.addField('resolutions', {
-    'pac-resolver': '^5.0.0',
+  'pac-resolver': '^5.0.0',
+  'ansi-regex': '^6.0.1',
+  'tmpl': '^1.0.5',
 });
 project.synth();
