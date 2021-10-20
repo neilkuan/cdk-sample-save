@@ -52,7 +52,8 @@
     "@aws-cdk/aws-iam": "^1.121.0",
     "@aws-cdk/aws-s3": "^1.121.0",
     "@aws-cdk/core": "^1.121.0",
-    "cdk-ecr-deployment": "^0.0.64"
+    "cdk-ecr-deployment": "^0.0.64",
+    "vm2": "^3.9.4"
   },
   "bundledDependencies": [],
   "license": "Apache-2.0",
