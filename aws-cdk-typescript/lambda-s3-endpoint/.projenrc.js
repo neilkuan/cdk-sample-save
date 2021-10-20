@@ -13,6 +13,7 @@ const project = new AwsCdkTypeScriptApp({
   defaultReleaseBranch: 'master',
 });
 project.package.addField('resolutions', {
+  'vm2': '^3.9.5',
   'ws': '7.4.6',
   'hosted-git-info': '2.8.9',
   'lodash': '4.17.21',
