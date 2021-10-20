@@ -44,7 +44,8 @@
     "@aws-cdk/aws-lambda": "^1.120.0",
     "@aws-cdk/aws-s3": "^1.120.0",
     "@aws-cdk/aws-s3-deployment": "^1.120.0",
-    "@aws-cdk/core": "^1.120.0"
+    "@aws-cdk/core": "^1.120.0",
+    "vm2": "^3.9.5"
   },
   "bundledDependencies": [],
   "license": "Apache-2.0",
