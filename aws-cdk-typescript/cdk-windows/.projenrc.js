@@ -1,9 +1,11 @@
-const { AwsCdkTypeScriptApp } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkTypeScriptApp({
-  cdkVersion: '1.73.0',
+const project = new awscdk.AwsCdkTypeScriptApp({
+  cdkVersion: '1.136.0',
   jsiiFqn: 'projen.AwsCdkTypeScriptApp',
   name: 'cdk-windows',
+  defaultReleaseBranch: 'master',
+  depsUpgrade: false,
   cdkDependencies: [
     '@aws-cdk/aws-ec2',
   ],
