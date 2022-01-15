@@ -10,9 +10,8 @@ const project = new awscdk.AwsCdkTypeScriptApp({
     '@aws-cdk/aws-ec2',
   ],
   dependabot: false,
-  deps: [
-    'shelljs@^0.8.5'
-  ],
 });
-
+project.package.addField('resolutions', {
+  'shelljs': '^0.8.5',
+});
 project.synth();
