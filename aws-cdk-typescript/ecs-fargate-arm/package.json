@@ -44,7 +44,8 @@
   },
   "dependencies": {
     "aws-cdk-lib": "^2.1.0",
-    "constructs": "^10.0.5"
+    "constructs": "^10.0.5",
+    "shelljs": "^0.8.5"
   },
   "bundledDependencies": [],
   "license": "Apache-2.0",
