@@ -1,6 +1,6 @@
-const { AwsCdkTypeScriptApp } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkTypeScriptApp({
+const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '1.95.1',
   defaultReleaseBranch: 'main',
   jsiiFqn: 'projen.AwsCdkTypeScriptApp',
@@ -12,7 +12,11 @@ const project = new AwsCdkTypeScriptApp({
   deps: [
     'esbuild',
   ],
+  defaultReleaseBranch: 'master',
   dependabot: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 project.gitignore.exclude(...['.DS_Store', 'cdk.context.json']);
 project.synth();
