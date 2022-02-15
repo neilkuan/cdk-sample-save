@@ -1,8 +1,7 @@
-const { AwsCdkTypeScriptApp } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkTypeScriptApp({
+const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '1.89.0',
-  defaultReleaseBranch: 'main',
   jsiiFqn: 'projen.AwsCdkTypeScriptApp',
   name: 'ecslogname',
   cdkDependencies: [
@@ -10,6 +9,11 @@ const project = new AwsCdkTypeScriptApp({
     '@aws-cdk/aws-ecs',
     '@aws-cdk/aws-logs',
   ],
+  defaultReleaseBranch: 'master',
+  dependabot: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 
 project.synth();

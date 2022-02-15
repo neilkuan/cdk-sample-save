@@ -1,6 +1,6 @@
-const { AwsCdkTypeScriptApp } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkTypeScriptApp({
+const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '1.76.0',
   name: 'eks-console-view',
   cdkDependencies: [
@@ -13,6 +13,11 @@ const project = new AwsCdkTypeScriptApp({
     '@types/js-yaml',
     'sync-request',
   ],
+  defaultReleaseBranch: 'master',
+  dependabot: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 
 project.synth();

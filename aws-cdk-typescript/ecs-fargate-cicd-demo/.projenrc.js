@@ -1,5 +1,5 @@
-const { AwsCdkTypeScriptApp } = require('projen');
-const project = new AwsCdkTypeScriptApp({
+const { awscdk } = require('projen');
+const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '1.121.0',
   defaultReleaseBranch: 'main',
   name: 'ecs-fargate-cicd-demo',
@@ -20,12 +20,17 @@ const project = new AwsCdkTypeScriptApp({
   deps: [
     'cdk-ecr-deployment',
   ],
+  defaultReleaseBranch: 'master',
+  dependabot: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 
-project.package.addField('resolutions', {
-  'vm2': '^3.9.6',
-  'pac-resolver': '^5.0.0',
-  'ansi-regex': '^6.0.1',
-  'tmpl': '^1.0.5',
-});
+// project.package.addField('resolutions', {
+//   'vm2': '^3.9.6',
+//   'pac-resolver': '^5.0.0',
+//   'ansi-regex': '^6.0.1',
+//   'tmpl': '^1.0.5',
+// });
 project.synth();

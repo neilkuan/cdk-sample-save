@@ -21,7 +21,7 @@
     },
     {
       "name": "aws-cdk",
-      "version": "^1.90.0",
+      "version": "^1.76.0",
       "type": "build"
     },
     {
@@ -82,17 +82,26 @@
     },
     {
       "name": "@aws-cdk/aws-ec2",
-      "version": "^1.90.0",
+      "version": "^1.76.0",
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/aws-ecs",
-      "version": "^1.90.0",
+      "name": "@aws-cdk/aws-eks",
+      "version": "^1.76.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/aws-iam",
+      "version": "^1.76.0",
       "type": "runtime"
     },
     {
       "name": "@aws-cdk/core",
-      "version": "^1.90.0",
+      "version": "^1.76.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@types/js-yaml",
       "type": "runtime"
     },
     {
@@ -101,8 +110,16 @@
       "type": "runtime"
     },
     {
+      "name": "js-yaml",
+      "type": "runtime"
+    },
+    {
+      "name": "sync-request",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-cdk/assert",
-      "version": "^1.90.0",
+      "version": "^1.76.0",
       "type": "test"
     }
   ],
