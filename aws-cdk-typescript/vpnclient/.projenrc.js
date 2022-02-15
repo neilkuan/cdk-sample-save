@@ -1,6 +1,6 @@
-const { AwsCdkTypeScriptApp } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkTypeScriptApp({
+const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '1.73.0',
   jsiiFqn: 'projen.AwsCdkTypeScriptApp',
   name: 'vpnclient',
@@ -8,7 +8,11 @@ const project = new AwsCdkTypeScriptApp({
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-logs',
   ],
-  dependabot: false,
+  defaultReleaseBranch: 'master',
+  depsUpgrade: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 const exclude = ['easy-rsa'];
 project.gitignore.exclude(...exclude);
