@@ -1,6 +1,6 @@
-const { AwsCdkTypeScriptApp } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkTypeScriptApp({
+const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '1.94.1',
   defaultReleaseBranch: 'main',
   jsiiFqn: 'projen.AwsCdkTypeScriptApp',
@@ -8,6 +8,11 @@ const project = new AwsCdkTypeScriptApp({
   cdkDependencies: [
     '@aws-cdk/aws-ec2',
   ],
+  defaultReleaseBranch: 'master',
+  dependabot: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 
 project.synth();
