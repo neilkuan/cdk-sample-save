@@ -1,5 +1,5 @@
-const { AwsCdkTypeScriptApp } = require('projen');
-const project = new AwsCdkTypeScriptApp({
+const { awscdk } = require('projen');
+const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '1.101.0',
   defaultReleaseBranch: 'main',
   name: 'step-function-sample',
@@ -13,8 +13,10 @@ const project = new AwsCdkTypeScriptApp({
     '@aws-cdk/aws-events',
     '@aws-cdk/aws-lambda-nodejs',
   ],
-  devDeps: [
-    'esbuild',
-  ],
+  defaultReleaseBranch: 'master',
+  dependabot: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 project.synth();
