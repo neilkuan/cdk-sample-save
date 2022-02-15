@@ -1,11 +1,11 @@
-const { AwsCdkConstructLibrary } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkConstructLibrary({
-  authorAddress: "guan840912@gmail.com",
-  authorName: "Neil Kuan",
-  cdkVersion: "1.75.0",
-  name: "ecs-sample",
-  repository: "https://github.com/guan840912/ecs-sample.git",
+const project = new awscdk.AwsCdkConstructLibrary({
+  authorAddress: 'guan840912@gmail.com',
+  authorName: 'Neil Kuan',
+  cdkVersion: '1.75.0',
+  name: 'ecs-sample',
+  repository: 'https://github.com/guan840912/ecs-sample.git',
   cdkDependencies: [
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-ecs',
@@ -14,6 +14,11 @@ const project = new AwsCdkConstructLibrary({
     '@aws-cdk/aws-elasticloadbalancingv2',
     '@aws-cdk/aws-autoscaling'
   ],
+  defaultReleaseBranch: 'master',
+  dependabot: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
 });
 
 project.synth();
