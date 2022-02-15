@@ -12,6 +12,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   dependabot: false,
 });
 project.package.addField('resolutions', {
-  'shelljs': '^0.8.5',
+  shelljs: '^0.8.5',
+  vm2: '^3.9.6',
 });
 project.synth();

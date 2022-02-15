@@ -4,4 +4,9 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   defaultReleaseBranch: 'main',
   name: 'ecs-fargate-arm',
 });
+
+project.package.addField('resolutions', {
+  vm2: '^3.9.6',
+});
+
 project.synth();

@@ -23,7 +23,7 @@ const project = new AwsCdkTypeScriptApp({
 });
 
 project.package.addField('resolutions', {
-  'vm2': '^3.9.5',
+  'vm2': '^3.9.6',
   'pac-resolver': '^5.0.0',
   'ansi-regex': '^6.0.1',
   'tmpl': '^1.0.5',

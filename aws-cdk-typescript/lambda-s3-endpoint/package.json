@@ -44,8 +44,7 @@
     "@aws-cdk/aws-lambda": "^1.120.0",
     "@aws-cdk/aws-s3": "^1.120.0",
     "@aws-cdk/aws-s3-deployment": "^1.120.0",
-    "@aws-cdk/core": "^1.120.0",
-    "shelljs": "^0.8.5"
+    "@aws-cdk/core": "^1.120.0"
   },
   "bundledDependencies": [],
   "license": "Apache-2.0",
@@ -90,7 +89,7 @@
     }
   },
   "resolutions": {
-    "vm2": "^3.9.5",
+    "vm2": "^3.9.6",
     "ws": "7.4.6",
     "hosted-git-info": "2.8.9",
     "lodash": "4.17.21",
