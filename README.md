@@ -64,3 +64,15 @@ ec2.MachineImage.lookup({
         },
       }).getImage(this).imageId
 ```
+
+
+### How to use `CfnKeyPair` and download.
+```ts
+const key = new CfnKeyPair(this, 'Mykey', {
+      keyName: 'labcdk',
+    });
+    
+new CfnOutput(this, 'key', {
+      value: `aws ssm get-parameter --name /ec2/keypair/${key.getAtt('KeyPairId')} --region ${this.region} --with-decryption --query 'Parameter."Value"' --output text > ${key.keyName}.pem`,
+    });
+```
