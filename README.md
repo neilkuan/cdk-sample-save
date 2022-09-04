@@ -76,3 +76,23 @@ new CfnOutput(this, 'key', {
       value: `aws ssm get-parameter --name /ec2/keypair/${key.getAtt('KeyPairId')} --region ${this.region} --with-decryption --query 'Parameter."Value"' --output text > ${key.keyName}.pem`,
     });
 ```
+
+### In Case lookup `dummy-value` back.
+```ts
+let roleArnValue
+let roleArn = ssm.StringParameter.valueFromLookup(this, "/param/testRoleArn");
+if (roleArn.includes('dummy-value')) {
+  roleArnValue = 'arn:aws:service:eu-central-1:123456789012:entity/dummy-value';
+} else {
+  roleArnValue = roleArn
+}
+const role = iam.Role.fromRoleArn(this, "role", roleArnValue);
+
+
+//or
+
+const roleArn = ssm.StringParameter.valueFromLookup(this, "/param/testRoleArn");
+// use Lazy function let cdk app lookup back later.
+const role = iam.Role.fromRoleArn(this, "role", cdk.Lazy.string({ produce: () => roleArn }));
+
+```
