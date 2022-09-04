@@ -1,6 +1,0 @@
-{
-  "app": "python3 app.py",
-  "context": {
-    "token": "12345"
-  }
-}
