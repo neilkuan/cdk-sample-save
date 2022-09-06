@@ -123,10 +123,10 @@ error message:
 ```ts
 Vpc must contain private subnets when public endpoint access is restricted
 ```
-- lookup vpc back save in cdk.context.json and select vpc subnet will return dummy vpc frist...
+- vpc.lookup() looks for vpc and stores it in cdk.context.json, before select subnet, new eks.Cluster() is assigned dummy vpc in advance...
 
 
-- Soultion: [iussue](https://github.com/aws/aws-cdk/issues/19425)
+- Solution: [iussue](https://github.com/aws/aws-cdk/issues/19425)
 ```ts
 export class MyStack extends Stack {
   vpc: aws_ec2.IVpc;
