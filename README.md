@@ -96,3 +96,62 @@ const roleArn = ssm.StringParameter.valueFromLookup(this, "/param/testRoleArn");
 const role = iam.Role.fromRoleArn(this, "role", cdk.Lazy.string({ produce: () => roleArn }));
 
 ```
+
+
+### Select vpcSubnet when new `aws_eks.Cluster` error
+- Case:
+```ts
+export class MyStack extends Stack {
+  vpc: aws_ec2.IVpc;
+  constructor(scope: Construct, id: string, props: MyStackProps) {
+    super(scope, id, props);
+
+    this.vpc = aws_ec2.Vpc.fromLookup(this, 'lookup', {
+      vpcId: props.vpcId,
+    });
+
+    new aws_eks.Cluster(this, 'Cluster', {
+      vpc: this.vpc,
+      version: aws_eks.KubernetesVersion.V1_21,
+      vpcSubnets: [{ subnetGroupName: 'PrivateA' }, { subnetGroupName: 'Public' }],
+      endpointAccess: aws_eks.EndpointAccess.PUBLIC_AND_PRIVATE.onlyFrom('1.2.3.4/32'),
+    });
+  }
+}
+```
+error message:
+```ts
+Vpc must contain private subnets when public endpoint access is restricted
+```
+- lookup vpc back save in cdk.context.json and select vpc subnet will return dummy vpc frist...
+
+
+- Soultion: [iussue](https://github.com/aws/aws-cdk/issues/19425)
+```ts
+export class MyStack extends Stack {
+  vpc: aws_ec2.IVpc;
+  constructor(scope: Construct, id: string, props: MyStackProps) {
+    super(scope, id, props);
+
+    this.vpc = aws_ec2.Vpc.fromLookup(this, 'lookup', {
+      vpcId: props.vpcId,
+    });
+
+    if (this.vpc.vpcId === 'vpc-12345') {
+    // if get Dummy Vpc, find again...
+      this.vpc = aws_ec2.Vpc.fromLookup(this, 'lookup2', {
+        vpcId: props.vpcId,
+      });
+    }
+    // if get Dummy Vpc, will not new Cluster class...
+    if (this.vpc.vpcId !== 'vpc-12345') {
+      new aws_eks.Cluster(this, 'Cluster', {
+        vpc: this.vpc,
+        version: aws_eks.KubernetesVersion.V1_21,
+        vpcSubnets: [{ subnetGroupName: 'PrivateA' }, { subnetGroupName: 'Public' }],
+        endpointAccess: aws_eks.EndpointAccess.PUBLIC_AND_PRIVATE.onlyFrom('1.2.3.4/32'),
+      });
+    }
+  }
+}
+```
