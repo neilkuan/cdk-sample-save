@@ -78,6 +78,10 @@ new CfnOutput(this, 'key', {
 ```
 
 ### In Case lookup `dummy-value` back.
+issue link:
+[21520](https://github.com/aws/aws-cdk/pull/21520)
+[8699](https://github.com/aws/aws-cdk/issues/8699#issuecomment-976159825)
+[aws-docs](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ssm-readme.html#lookup-existing-parameters)
 ```ts
 let roleArnValue
 let roleArn = ssm.StringParameter.valueFromLookup(this, "/param/testRoleArn");
