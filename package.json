@@ -30,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "aws-cdk": "^2.40.0",
-    "esbuild": "^0.15.7",
+    "esbuild": "^0.15.8",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^3.5.1",
@@ -50,7 +50,7 @@
     "@types/js-yaml": "*",
     "aws-cdk-lib": "^2.40.0",
     "cdk-ecr-deployment": "^2.5.5",
-    "cdk-spot-one": "^2.0.151",
+    "cdk-spot-one": "^2.0.152",
     "constructs": "^10.0.5",
     "js-yaml": "^4.1.0",
     "sync-request": "^6.1.0"
