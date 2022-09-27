@@ -1,4 +1,4 @@
-const { awscdk } = require('projen');
+const { awscdk, javascript } = require('projen');
 const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '2.40.0',
   defaultReleaseBranch: 'main',
@@ -6,6 +6,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve'],
+      schedule: javascript.UpgradeDependenciesSchedule.WEEKLY,
     },
   },
   autoApproveOptions: {
@@ -20,6 +21,10 @@ const project = new awscdk.AwsCdkTypeScriptApp({
     '@types/js-yaml',
     'sync-request',
     'cdk-ecr-deployment@^2.5.5',
+  ],
+  devDeps: [
+    'aws-lambda',
+    '@types/aws-lambda',
   ],
   gitignore: ['cdk.context.json', 'cdk.out', 'easy-rsa'],
   typescriptVersion: '^4.6',

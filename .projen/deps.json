@@ -1,6 +1,10 @@
 {
   "dependencies": [
     {
+      "name": "@types/aws-lambda",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "type": "build"
     },
@@ -22,6 +26,10 @@
     {
       "name": "aws-cdk",
       "version": "^2.40.0",
+      "type": "build"
+    },
+    {
+      "name": "aws-lambda",
       "type": "build"
     },
     {
