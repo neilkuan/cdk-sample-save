@@ -159,3 +159,32 @@ export class MyStack extends Stack {
   }
 }
 ```
+
+#### Find new VPC NatGateway eip address 
+```ts
+const vpc = new ec2.Vpc(this, 'Vpc', {
+      vpcName: 'HttpApiVpc',
+      natGateways: 1,
+      subnetConfiguration: [
+        {
+          name: 'PublicSubnet',
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
+        {
+          name: 'PrivateNatSubnet',
+          subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
+        },
+      ],
+      maxAzs: 3,
+      enableDnsHostnames: true,
+      enableDnsSupport: true,
+    });
+vpc.publicSubnets.forEach((publicSubnet, index) => {
+    const eip = publicSubnet.node.children.find(c => (c as CfnResource).cfnResourceType === 'AWS::EC2::EIP') as ec2.CfnEIP;
+    if (eip) {
+      new CfnOutput(this, `eip${index}`, {
+          value: `${eip.ref}`,
+     });
+    }
+});
+```
