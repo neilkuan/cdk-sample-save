@@ -188,3 +188,20 @@ vpc.publicSubnets.forEach((publicSubnet, index) => {
     }
 });
 ```
+
+
+
+### ECS RUN Task IN Tail do not thing.
+```ts
+ const fargateTaskDefinition = new ecs.FargateTaskDefinition(this, 'TaskDef');
+    
+fargateTaskDefinition.addContainer(
+      'Container',
+      {
+        containerName: 'nginx',
+        image: ecs.ContainerImage.fromRegistry('nginx'),
+        entryPoint: [''],
+        command: ['tail', '-f', '/dev/null'],
+      },
+    );
+```
