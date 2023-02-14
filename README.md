@@ -205,3 +205,34 @@ fargateTaskDefinition.addContainer(
       },
     );
 ```
+
+### ECS Service dependency Capacity Provider Aspect
+```ts
+import {
+  aws_ecs,
+  IAspect,
+  Aspects,
+} from 'aws-cdk-lib';
+import { IConstruct } from 'constructs';
+
+/**
+ * Add a dependency from capacity provider association to the cluster
+ * and from each service to the capacity provider association.
+ */
+class CapacityProviderDependencyAspect implements IAspect {
+  public visit(node: IConstruct): void {
+    if (node instanceof aws_ecs.FargateService) {
+      const children = node.cluster.node.findAll();
+      for (const child of children) {
+        if (child instanceof aws_ecs.CfnClusterCapacityProviderAssociations) {
+          child.node.addDependency(node.cluster);
+          node.node.addDependency(child);
+        }
+      }
+    }
+  }
+}
+
+
+Aspects.of(this).add(new CapacityProviderDependencyAspect());
+```
