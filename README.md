@@ -236,3 +236,57 @@ class CapacityProviderDependencyAspect implements IAspect {
 
 Aspects.of(this).add(new CapacityProviderDependencyAspect());
 ```
+
+### Slack Approval Bot Action on Codepipeline
+```ts
+import { ActionCategory, CommonActionProps, IStage, ActionBindOptions, ActionConfig } from '@aws-cdk/aws-codepipeline';
+import { Action } from '@aws-cdk/aws-codepipeline-actions';
+import { ITopic } from '@aws-cdk/aws-sns';
+import { Construct } from '@aws-cdk/core';
+
+export interface SlackApprovalActionProps extends CommonActionProps {
+  readonly additionalInformation?: string;
+  readonly externalEntityLink?: string;
+  /**
+   * for codepipeline send approval event
+   */
+  readonly topic: ITopic;
+}
+
+/**
+ * idea from
+ * see: https://github.com/cloudcomponents/cdk-constructs/blob/master/packages/cdk-codepipeline-slack
+ */
+export class SlackApprovalAction extends Action {
+  public constructor(private props: SlackApprovalActionProps) {
+    super({
+      ...props,
+      category: ActionCategory.APPROVAL,
+      provider: 'Manual',
+      artifactBounds: {
+        minInputs: 0,
+        maxInputs: 0,
+        minOutputs: 0,
+        maxOutputs: 0,
+      },
+    });
+
+    this.props = props;
+  }
+
+  protected bound(scope: Construct, stage: IStage, options: ActionBindOptions): ActionConfig {
+    const topic = this.props.topic;
+    topic.grantPublish(options.role);
+
+    return {
+      configuration: {
+        NotificationArn: topic.topicArn,
+        CustomData: this.props.additionalInformation,
+        ExternalEntityLink: this.props.externalEntityLink,
+      },
+    };
+  }
+}
+
+
+```
