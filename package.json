@@ -39,7 +39,7 @@
     "jest": "^29.5.0",
     "jest-junit": "^15",
     "npm-check-updates": "^16",
-    "projen": "^0.71.66",
+    "projen": "^0.71.74",
     "ts-jest": "^28.0.8",
     "ts-node": "^10.9.1",
     "typescript": "^4.6"
