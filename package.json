@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^2",
-    "@types/aws-lambda": "^8.10.148",
+    "@types/aws-lambda": "^8.10.149",
     "@types/jest": "^29.5.14",
     "@types/node": "ts4.6",
     "@typescript-eslint/eslint-plugin": "^8",
